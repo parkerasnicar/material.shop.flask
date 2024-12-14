@@ -1,17 +1,19 @@
 from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
+from db import db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///material_shop.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
+db.init_app(app)
 
+# Import models after db is set up
 from models import Product, ProductImage, Order, OrderDetail
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    products = Product.query.all()
+    return render_template('index.html', products=products)
 
 if __name__ == '__main__':
     app.run(debug=True)
