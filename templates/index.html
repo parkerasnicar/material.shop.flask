@@ -9,7 +9,6 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <!-- Add 'rounded' class to images to give them rounded corners -->
       <img src="https://via.placeholder.com/1500x600" class="d-block w-100 rounded" alt="Featured Image 1">
     </div>
     <div class="carousel-item">
@@ -71,41 +70,124 @@
   </div>
 </div>
 
-<!-- Social Media Carousel with border -->
-<div class="mb-5 border rounded p-4">
+<!-- Full-Width Social Media Section -->
+<style>
+  .full-width-section {
+    width: 100vw;
+    margin-left: calc((100vw - 100%) / 2 * -1);
+    margin-right: calc((100vw - 100%) / 2 * -1);
+  }
+
+  .marquee-container {
+    overflow: hidden;
+    position: relative;
+    width: 100vw;
+    background: #fff;
+  }
+
+  .marquee-row {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    height: 200px; 
+    position: relative;
+  }
+
+  .marquee-row .marquee-content {
+    display: inline-flex;
+  }
+
+  .marquee-row img {
+    width: 200px;
+    height: 200px; 
+    object-fit: cover;
+    margin: 0 10px;
+  }
+
+  .marquee-row.top .marquee-content {
+    animation: marquee-left 30s linear infinite;
+  }
+
+  .marquee-row.bottom .marquee-content {
+    animation: marquee-right 30s linear infinite;
+  }
+
+  @keyframes marquee-left {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes marquee-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0%); }
+  }
+</style>
+
+<div class="container-fluid px-0 full-width-section">
   <h3 class="text-center mb-4">Inspiration from Our Community</h3>
-  <div id="socialCarousel" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#socialCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#socialCarousel" data-slide-to="1"></li>
-      <li data-target="#socialCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner text-center">
-      <div class="carousel-item active">
-        <img src="https://via.placeholder.com/600x400" class="img-fluid rounded" alt="Social 1">
-        <p class="mt-2">#materi.al on the streets of Melbourne</p>
-      </div>
-      <div class="carousel-item">
-        <img src="https://via.placeholder.com/600x400" class="img-fluid rounded" alt="Social 2">
-        <p class="mt-2">Our organic tees in action #ethicalfashion</p>
-      </div>
-      <div class="carousel-item">
-        <img src="https://via.placeholder.com/600x400" class="img-fluid rounded" alt="Social 3">
-        <p class="mt-2">Styled by you, for you #ecofriendly</p>
+
+  <div class="marquee-container">
+    <!-- Top Row (right to left) -->
+    <div class="marquee-row top">
+      <div class="marquee-content">
+        <img src="https://via.placeholder.com/200?text=Social1" alt="Social 1">
+        <img src="https://via.placeholder.com/200?text=Social2" alt="Social 2">
+        <img src="https://via.placeholder.com/200?text=Social3" alt="Social 3">
+        <img src="https://via.placeholder.com/200?text=Social4" alt="Social 4">
+        <img src="https://via.placeholder.com/200?text=Social5" alt="Social 5">
+        <img src="https://via.placeholder.com/200?text=Social6" alt="Social 6">
+        <img src="https://via.placeholder.com/200?text=Social7" alt="Social 7">
+        <img src="https://via.placeholder.com/200?text=Social8" alt="Social 8">
+        <img src="https://via.placeholder.com/200?text=Social9" alt="Social 9">
+        <img src="https://via.placeholder.com/200?text=Social10" alt="Social 10">
+
+        <img src="https://via.placeholder.com/200?text=Social1" alt="Social 1 duplicate">
+        <img src="https://via.placeholder.com/200?text=Social2" alt="Social 2 duplicate">
+        <img src="https://via.placeholder.com/200?text=Social3" alt="Social 3 duplicate">
+        <img src="https://via.placeholder.com/200?text=Social4" alt="Social 4 duplicate">
+        <img src="https://via.placeholder.com/200?text=Social5" alt="Social 5 duplicate">
+        <img src="https://via.placeholder.com/200?text=Social6" alt="Social 6 duplicate">
+        <img src="https://via.placeholder.com/200?text=Social7" alt="Social 7 duplicate">
+        <img src="https://via.placeholder.com/200?text=Social8" alt="Social 8 duplicate">
+        <img src="https://via.placeholder.com/200?text=Social9" alt="Social 9 duplicate">
+        <img src="https://via.placeholder.com/200?text=Social10" alt="Social 10 duplicate">
       </div>
     </div>
-    <a class="carousel-control-prev" href="#socialCarousel" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    </a>
-    <a class="carousel-control-next" href="#socialCarousel" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    </a>
+  </div>
+
+  <div class="marquee-container mt-4">
+    <!-- Bottom Row (left to right) -->
+    <div class="marquee-row bottom">
+      <div class="marquee-content">
+        <img src="https://via.placeholder.com/200?text=SocialA" alt="Social A">
+        <img src="https://via.placeholder.com/200?text=SocialB" alt="Social B">
+        <img src="https://via.placeholder.com/200?text=SocialC" alt="Social C">
+        <img src="https://via.placeholder.com/200?text=SocialD" alt="Social D">
+        <img src="https://via.placeholder.com/200?text=SocialE" alt="Social E">
+        <img src="https://via.placeholder.com/200?text=SocialF" alt="Social F">
+        <img src="https://via.placeholder.com/200?text=SocialG" alt="Social G">
+        <img src="https://via.placeholder.com/200?text=SocialH" alt="Social H">
+        <img src="https://via.placeholder.com/200?text=SocialI" alt="Social I">
+        <img src="https://via.placeholder.com/200?text=SocialJ" alt="Social J">
+
+        <img src="https://via.placeholder.com/200?text=SocialA" alt="Social A duplicate">
+        <img src="https://via.placeholder.com/200?text=SocialB" alt="Social B duplicate">
+        <img src="https://via.placeholder.com/200?text=SocialC" alt="Social C duplicate">
+        <img src="https://via.placeholder.com/200?text=SocialD" alt="Social D duplicate">
+        <img src="https://via.placeholder.com/200?text=SocialE" alt="Social E duplicate">
+        <img src="https://via.placeholder.com/200?text=SocialF" alt="Social F duplicate">
+        <img src="https://via.placeholder.com/200?text=SocialG" alt="Social G duplicate"> 
+        <img src="https://via.placeholder.com/200?text=SocialH" alt="Social H duplicate">
+        <img src="https://via.placeholder.com/200?text=SocialI" alt="Social I duplicate">
+        <img src="https://via.placeholder.com/200?text=SocialJ" alt="Social J duplicate">
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- Footer with border for consistency -->
 <footer class="text-center py-4 border-top">
   <p>© 2024 materi.al | All rights reserved.</p>
   <p>Ethically sourced streetwear for the mindful customer.</p>
 </footer>
+
 {% endblock %}
