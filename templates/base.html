@@ -4,17 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>materi.al</title>
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
     <style>
+        /* General styles */
         body {
             font-family: 'Outfit', sans-serif;
         }
         .rubik-mono {
             font-family: 'Rubik Mono One', sans-serif;
         }
+
+        /* Navigation Bar Styles */
         .floating-nav {
             margin-top: 2rem;
             display: grid;
@@ -44,6 +47,8 @@
             justify-content: flex-end;
             align-items: center;
         }
+
+        /* Button styles */
         button {
             background: #FCCA46;
             font-family: inherit;
@@ -63,6 +68,8 @@
             transform: translate(0.05em, 0.05em);
             box-shadow: 0.05em 0.05em;
         }
+
+        /* Cart size button */
         .cart-size {
             background: #FCCA46;
             padding: 0.6em 1.3em;
@@ -78,34 +85,31 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-<div class="floating-nav">
-    <!-- Left Section: Shop -->
-    <a href="/shop">Shop</a>
-    <!-- Left Center: About -->
-    <a href="/about">About</a>
-    <!-- Center: Title -->
-    <a class="navbar-brand" href="/">materi.al</a>
-    <!-- Right Center: Contact -->
-    <a href="/contact">Contact</a>
-    <!-- Right Section: Cart Size and Cart -->
-    <div class="cart-container" style="margin-right: 1rem;"> <!-- Inline Margin to shift left -->
-        <div id="cart-size" class="btn cart-size" style="margin-right: 1.3rem;">0</div>
-        <a href="/cart" style="margin-right: 0.5rem;">
-            <button style="margin-left: -10px;">Cart</button>
-        </a>
+    <div class="floating-nav">
+        <!-- Navigation Links -->
+        <a href="/shop">Shop</a>
+        <a href="/about">About</a>
+        <a class="navbar-brand" href="/">materi.al</a>
+        <a href="/contact">Contact</a>
+        <!-- Cart Section -->
+        <div class="cart-container" style="margin-right: 1rem;">
+            <div id="cart-size" class="btn cart-size" style="margin-right: 1.3rem;">0</div>
+            <a href="/cart" style="margin-right: 0.5rem;">
+                <button style="margin-left: -10px;">Cart</button>
+            </a>
+        </div>
     </div>
-</div>
     
-    <!-- Content will be injected here by child templates -->
+    <!-- Page Content -->
     <div class="container mt-4">
         {% block content %}{% endblock %}
     </div>
 
-    <!-- Bootstrap JS and its dependencies -->
+    <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Dynamic Cart Size Script -->
+    <!-- Script to Update Cart Size -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
