@@ -1,28 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container mt-5 mb-5 d-flex flex-column">
+<div class="container mt-5 mb-5">
 
     <!-- Shop Page Title -->
     <h1 class="mb-4 text-center" style="font-family: 'Rubik Mono One', sans-serif; color: #31493C;">Browse Our Collection</h1>
 
     <!-- Search Bar -->
-    <div class="mb-4 d-flex justify-content-center">
+    <form method="GET" action="{{ url_for('shop') }}" class="mb-4 d-flex justify-content-center">
         <div class="input-group" style="max-width: 800px; width: 100%;">
-            <input type="text" class="form-control" placeholder="Search for products..." aria-label="Search" aria-describedby="button-search" style="border-radius: 20px 0 0 20px;">
+            <input type="text" name="search" class="form-control" placeholder="Search for products..." 
+                   value="{{ search_query }}" aria-label="Search" style="border-radius: 20px 0 0 20px;">
             <div class="input-group-append">
-                <button class="btn btn-dark" type="button" id="button-search" style="border-radius: 0 20px 20px 0; padding: 0 20px;">Search</button>
+                <button class="btn btn-dark" type="submit" style="border-radius: 0 20px 20px 0; padding: 0 20px;">Search</button>
             </div>
         </div>
-    </div>
+    </form>
 
     <!-- Filter Tags -->
     <div class="mb-4 text-center">
-        <span class="badge badge-pill badge-secondary px-3 py-2 mx-1" style="cursor: pointer;">Hoodies</span>
-        <span class="badge badge-pill badge-secondary px-3 py-2 mx-1" style="cursor: pointer;">Shirts</span>
-        <span class="badge badge-pill badge-secondary px-3 py-2 mx-1" style="cursor: pointer;">Pants</span>
-        <span class="badge badge-pill badge-secondary px-3 py-2 mx-1" style="cursor: pointer;">Accessories</span>
-        <span class="badge badge-pill badge-secondary px-3 py-2 mx-1" style="cursor: pointer;">Jeans</span>
-        <span class="badge badge-pill badge-secondary px-3 py-2 mx-1" style="cursor: pointer;">Hats</span>
+        <form method="GET" action="{{ url_for('shop') }}">
+            <input type="hidden" name="search" value="{{ search_query }}">
+            <button type="submit" class="badge badge-pill badge-secondary px-3 py-2 mx-1 {% if 'Hoodies' in selected_categories %}badge-dark{% endif %}" name="category" value="Hoodies">Hoodies</button>
+            <button type="submit" class="badge badge-pill badge-secondary px-3 py-2 mx-1 {% if 'Shirts' in selected_categories %}badge-dark{% endif %}" name="category" value="Shirts">Shirts</button>
+            <button type="submit" class="badge badge-pill badge-secondary px-3 py-2 mx-1 {% if 'Pants' in selected_categories %}badge-dark{% endif %}" name="category" value="Pants">Pants</button>
+            <button type="submit" class="badge badge-pill badge-secondary px-3 py-2 mx-1 {% if 'Accessories' in selected_categories %}badge-dark{% endif %}" name="category" value="Accessories">Accessories</button>
+            <button type="submit" class="badge badge-pill badge-secondary px-3 py-2 mx-1 {% if 'Jeans' in selected_categories %}badge-dark{% endif %}" name="category" value="Jeans">Jeans</button>
+            <button type="submit" class="badge badge-pill badge-secondary px-3 py-2 mx-1 {% if 'Hats' in selected_categories %}badge-dark{% endif %}" name="category" value="Hats">Hats</button>
+        </form>
     </div>
 
     <!-- Product Grid -->
@@ -41,6 +45,10 @@
                 </div>
             </a>
         </div>
+        {% else %}
+        <div class="col-12 text-center">
+            <p style="font-family: 'Outfit', sans-serif; font-size: 1.2em; color: #6c757d;">No products found.</p>
+        </div>
         {% endfor %}
     </div>
 
@@ -50,15 +58,13 @@
             <ul class="pagination">
                 {% if pagination.has_prev %}
                 <li class="page-item">
-                    <a class="page-link" href="{{ url_for('shop', page=pagination.prev_num) }}" aria-label="Previous">
-                        &laquo;
-                    </a>
+                    <a class="page-link" href="{{ url_for('shop', page=pagination.prev_num, search=search_query, category=selected_categories) }}" aria-label="Previous">&laquo;</a>
                 </li>
                 {% endif %}
-                {% for page_num in pagination.iter_pages(left_edge=2, right_edge=2, left_current=2, right_current=2) %}
+                {% for page_num in pagination.iter_pages() %}
                 {% if page_num %}
                 <li class="page-item {% if page_num == pagination.page %}active{% endif %}">
-                    <a class="page-link" href="{{ url_for('shop', page=page_num) }}">{{ page_num }}</a>
+                    <a class="page-link" href="{{ url_for('shop', page=page_num, search=search_query, category=selected_categories) }}">{{ page_num }}</a>
                 </li>
                 {% else %}
                 <li class="page-item disabled"><span class="page-link">…</span></li>
@@ -66,15 +72,13 @@
                 {% endfor %}
                 {% if pagination.has_next %}
                 <li class="page-item">
-                    <a class="page-link" href="{{ url_for('shop', page=pagination.next_num) }}" aria-label="Next">
-                        &raquo;
-                    </a>
+                    <a class="page-link" href="{{ url_for('shop', page=pagination.next_num, search=search_query, category=selected_categories) }}" aria-label="Next">&raquo;</a>
                 </li>
                 {% endif %}
             </ul>
         </nav>
     </div>
-    
+
 </div>
 
 <!-- Copyright Section -->

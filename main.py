@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, url_for
 from db import db
 from models import Product, ProductImage, Order, OrderDetail
 
@@ -21,27 +21,28 @@ def about():
 def contact():
     return render_template('contact.html')
 
-@app.route('/shop')
+@app.route('/shop', methods=['GET'])
 def shop():
+    # Get search query and category filters from request arguments
+    search_query = request.args.get('search', '').strip()
+    category_filter = request.args.getlist('category')  # Multi-select filter support
     page = request.args.get('page', 1, type=int)
-    per_page = 8  # Number of items per page
-    query = Product.query  # Base query
 
-    # Handle category filter
-    category = request.args.get('category')
-    if category:
-        query = query.filter_by(category=category)
+    # Start with all products
+    query = Product.query
 
-    # Handle search
-    search_query = request.args.get('search')
+    # Apply search filter
     if search_query:
         query = query.filter(Product.name.ilike(f"%{search_query}%"))
 
-    # Paginate query
-    pagination = query.paginate(page=page, per_page=per_page)
-    products = pagination.items
+    # Apply category filter if any
+    if category_filter:
+        query = query.filter(Product.category.in_(category_filter))
 
-    return render_template('shop.html', products=products, pagination=pagination)
+    # Paginate results (8 items per page)
+    products = query.paginate(page=page, per_page=8)
+
+    return render_template('shop.html', products=products.items, pagination=products, search_query=search_query, selected_categories=category_filter)
 
 @app.route('/shop/<category>/<int:item_id>')
 def item_details(category, item_id):
