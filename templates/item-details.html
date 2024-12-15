@@ -19,7 +19,7 @@
         </ol>
     </nav>
 
-    <!-- Item Image and Details -->
+    <!-- Product Image and Details Section -->
     <div class="row align-items-start">
         <!-- Product Image -->
         <div class="col-md-6">
@@ -39,13 +39,13 @@
                 ${{ product.price }}
             </p>
 
-            <!-- Size Selection -->
+            <!-- Size Selection Buttons -->
             <div class="mt-4 mb-4">
                 <div class="d-flex flex-wrap gap-3" id="size-buttons">
                     {% set sizes = product.available_sizes.split(',') %}
                     {% for size in sizes %}
                         {% if size in product.stock_by_size and product.stock_by_size[size] > 0 %}
-                            <!-- In Stock Button -->
+                            <!-- Button for Available Sizes -->
                             <button type="button" 
                                     class="btn btn-outline-dark size-btn" 
                                     data-size="{{ size }}" 
@@ -53,7 +53,7 @@
                                 {{ size }}
                             </button>
                         {% else %}
-                            <!-- Out of Stock Button -->
+                            <!-- Button for Out of Stock Sizes -->
                             <button type="button" 
                                     class="btn btn-secondary size-btn disabled" 
                                     style="width: 80px; height: 50px; border-radius: 10px; font-size: 1.2em; font-weight: bold; margin-right: 10px; cursor: not-allowed;">
@@ -64,6 +64,7 @@
                 </div>
             </div>
 
+            <!-- Additional Product Info -->
             <p style="font-family: 'Outfit', sans-serif;">
                 Sustainability Rating: {{ product.sustainability_rating }}
             </p>
@@ -75,14 +76,14 @@
     </div>
 </div>
 
-<!-- JavaScript for Button Selection and Add to Cart -->
+<!-- JavaScript for Size Selection and Add to Cart -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const sizeButtons = document.querySelectorAll('.size-btn');
     const addToCartButton = document.getElementById("add-to-cart");
     let selectedSize = null;
 
-    // Highlight selected size
+    // Handle size selection
     sizeButtons.forEach(button => {
         button.addEventListener('click', () => {
             if (!button.classList.contains('disabled')) {
@@ -93,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Add to Cart Functionality
+    // Add to cart functionality
     addToCartButton.addEventListener('click', () => {
         if (!selectedSize) {
             alert("Please select a size before adding to cart.");
@@ -108,23 +109,18 @@ document.addEventListener("DOMContentLoaded", () => {
             quantity: 1
         };
 
-        // Retrieve or initialize the cart
+        // Update cart in localStorage
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        // Check if the item already exists in the cart
         const existingItem = cart.find(item => item.id === product.id && item.size === product.size);
         if (existingItem) {
             existingItem.quantity += 1;
         } else {
             cart.push(product);
         }
-
-        // Save the updated cart to localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
 
-        // Update the cart size
+        // Update navbar cart size and show confirmation
         updateCartSize();
-
         alert("Item added to cart!");
     });
 
@@ -135,21 +131,18 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('cart-size').textContent = totalItems;
     }
 
-    // Initialize cart size on load
+    // Initialize cart size on page load
     updateCartSize();
 });
 </script>
 
-<!-- Footer Section -->
+<!-- Footer -->
 <footer class="text-white py-5" style="background-color: #31493C; border-radius: 20px; margin-top: 40px;">
     <div class="container">
       <div class="row align-items-start">
-        <!-- Brand Name -->
         <div class="col-md-4">
           <h2 class="rubik-mono" style="font-size: 2.5em; font-weight: bold;">MATERIAL</h2>
         </div>
-  
-        <!-- Terms & Conditions -->
         <div class="col-md-4">
           <h5 style="font-weight: bold;">Terms & Conditions</h5>
           <ul class="list-unstyled">
@@ -158,8 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <li><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
           </ul>
         </div>
-  
-        <!-- Contact Us -->
         <div class="col-md-4">
           <h5 style="font-weight: bold;">Contact Us</h5>
           <form>
@@ -180,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     </div>
 </footer>
-  
+
 <!-- Copyright Section -->
 <div class="container text-center py-3 mt-4" style="background-color: #31493C; border-radius: 20px; margin-bottom: 20px;">
     <p class="mb-1 text-white">© 2024 materi.al | All rights reserved.</p>
