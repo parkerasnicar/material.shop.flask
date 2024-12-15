@@ -65,6 +65,10 @@ def item_details(category, item_id):
 def cart():
     return render_template('cart.html')
 
+@app.route('/checkout')
+def checkout():
+    return render_template('checkout.html')
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()

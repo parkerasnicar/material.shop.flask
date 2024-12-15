@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-5 mb-5">
-    <!-- Cart Page Title -->
+    <!-- Page Title -->
     <h1 class="text-center mb-4" style="font-family: 'Rubik Mono One', sans-serif; color: #31493C;">
-        Your Shopping Cart
+        Proceed to Checkout
     </h1>
 
-    <!-- Cart Items -->
+    <!-- Cart Summary -->
     <div class="card mb-4">
         <div class="card-header bg-dark text-white" style="font-family: 'Outfit', sans-serif; font-weight: bold;">
-            Cart Items
+            Order Summary
         </div>
         <div class="card-body">
             <table class="table">
@@ -23,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody id="cart-items">
-                    <!-- Cart items will be dynamically populated -->
+                    <!-- Cart items will be populated dynamically -->
                 </tbody>
             </table>
             <h4 class="text-right mt-4" id="total-price" style="font-weight: bold; color: #31493C;">
@@ -32,26 +32,41 @@
         </div>
     </div>
 
-    <!-- Actions -->
-    <div class="d-flex justify-content-between">
-        <!-- Clear Basket Button -->
-        <button id="clear-cart" class="btn btn-secondary" style="border-radius: 10px;">Clear Basket</button>
-
-        <!-- Proceed to Checkout Button -->
-        <a href="/checkout" class="btn btn-dark btn-lg" style="border-radius: 10px;">Proceed to Checkout</a>
+    <!-- Checkout Form -->
+    <div class="card">
+        <div class="card-header bg-dark text-white" style="font-family: 'Outfit', sans-serif; font-weight: bold;">
+            Enter Your Details
+        </div>
+        <div class="card-body">
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Shipping Address</label>
+                    <textarea id="address" class="form-control" rows="3" placeholder="Enter your shipping address" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-dark btn-lg btn-block" style="border-radius: 10px;">Confirm and Proceed</button>
+            </form>
+        </div>
     </div>
 </div>
 
-<!-- JavaScript for Cart Management -->
+<!-- JavaScript for Populating Cart Summary -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const cartItemsContainer = document.getElementById("cart-items");
     const totalPriceElement = document.getElementById("total-price");
 
-    // Populate cart items
+    // Populate cart summary
     let total = 0;
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
         const subtotal = item.price * item.quantity;
         total += subtotal;
 
@@ -69,10 +84,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update total price
     totalPriceElement.textContent = `Total: $${total.toFixed(2)}`;
 
-    // Clear cart functionality
-    document.getElementById("clear-cart").addEventListener("click", function () {
+    // Handle form submission
+    document.getElementById("checkout-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert("Order confirmed! Thank you for shopping with us.");
         localStorage.removeItem("cart");
-        location.reload();
+        window.location.href = "/";
     });
 });
 </script>
@@ -91,4 +108,5 @@ document.addEventListener("DOMContentLoaded", function () {
   <p class="mb-1" style="font-family: 'Outfit', sans-serif; font-weight: bold;">© 2024 materi.al | All rights reserved.</p>
   <p class="mb-0" style="font-family: 'Outfit', sans-serif;">Ethically sourced streetwear for the mindful customer.</p>
 </div>
+
 {% endblock %}
