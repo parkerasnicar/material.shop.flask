@@ -1,24 +1,64 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-5 mb-5">
+
     <!-- Shop Page Title -->
     <h1 class="mb-4 text-center" style="font-family: 'Rubik Mono One', sans-serif; color: #31493C;">Browse Our Collection</h1>
-    
+
+    <!-- Search Bar -->
+    <div class="mb-4 d-flex justify-content-center">
+        <div class="input-group" style="max-width: 800px; width: 100%;">
+            <input type="text" class="form-control" placeholder="Search for products..." aria-label="Search" aria-describedby="button-search" style="border-radius: 20px 0 0 20px;">
+            <div class="input-group-append">
+                <button class="btn btn-dark" type="button" id="button-search" style="border-radius: 0 20px 20px 0; padding: 0 20px;">Search</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Tags -->
+    <div class="mb-4 text-center">
+        <span class="badge badge-pill badge-secondary px-3 py-2 mx-1" style="cursor: pointer;">Hoodies</span>
+        <span class="badge badge-pill badge-secondary px-3 py-2 mx-1" style="cursor: pointer;">Shirts</span>
+        <span class="badge badge-pill badge-secondary px-3 py-2 mx-1" style="cursor: pointer;">Pants</span>
+        <span class="badge badge-pill badge-secondary px-3 py-2 mx-1" style="cursor: pointer;">Accessories</span>
+        <span class="badge badge-pill badge-secondary px-3 py-2 mx-1" style="cursor: pointer;">Jeans</span>
+        <span class="badge badge-pill badge-secondary px-3 py-2 mx-1" style="cursor: pointer;">Hats</span>
+    </div>
+
     <!-- Product Grid -->
     <div class="row">
         {% for product in products %}
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}" style="height: 300px; object-fit: cover;">
-                <div class="card-body text-center">
-                    <h5 class="card-title" style="font-family: 'Outfit', sans-serif; font-weight: bold;">{{ product.name }}</h5>
-                    <p class="card-text">{{ product.description }}</p>
-                    <p class="text-success font-weight-bold">${{ product.price }}</p>
-                    <a href="{{ url_for('item_details', product_id=product.id) }}" class="btn btn-dark">View Details</a>
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+            <a href="{{ url_for('item_details', product_id=product.id) }}" class="text-decoration-none text-dark">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}" 
+                         style="height: 200px; object-fit: cover; border-radius: 10px;">
+                    <div class="card-body text-center">
+                        <p class="mb-0" style="font-family: 'Outfit', sans-serif; font-weight: bold;">
+                            ${{ product.price }} | {{ product.name }}
+                        </p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         {% endfor %}
     </div>
+
 </div>
+
+<!-- Copyright Section -->
+<div class="container-fluid text-center py-2" 
+     style="background-color: #F5F5F5; 
+            border: 2px solid #31493C; 
+            border-radius: 20px; 
+            position: absolute; 
+            bottom: 20px; 
+            left: 50%; 
+            transform: translateX(-50%);
+            width: 55.5%; /* Matches the navbar width */
+            color: #31493C;">
+  <p class="mb-1" style="font-family: 'Outfit', sans-serif; font-weight: bold;">© 2024 materi.al | All rights reserved.</p>
+  <p class="mb-0" style="font-family: 'Outfit', sans-serif;">Ethically sourced streetwear for the mindful customer.</p>
+</div>
+
 {% endblock %}
