@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- Wrap the main sections in a container with a fixed max-width to align with the navbar -->
 <div style="max-width:100%; margin:0 auto;">
 
-  <!-- Hero Carousel with rounded edges -->
+  <!-- Hero Carousel -->
   <div id="heroCarousel" class="carousel slide mb-5 border rounded" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#heroCarousel" data-slide-to="0" class="active"></li>
@@ -73,7 +72,7 @@
   </div>
 </div>
 
-  <!-- Quote Section with border -->
+  <!-- Quote Section -->
   <div class="text-center mb-5 p-4" 
   style="border: 2px solid #31493C; 
          border-radius: 20px; 
@@ -88,7 +87,7 @@
 </blockquote>
 </div>
 
-  <!-- Hot Product Highlight with border -->
+  <!-- Hot Product Highlight -->
   <style>
     button {
       background: #FCCA46;
@@ -114,15 +113,12 @@
 <!-- Hot Product Highlight Section -->
 <div class="mb-5" style="border: 2px solid #31493C; border-radius: 20px; padding: 20px; background: #F5F5F5;">
   <div class="row align-items-center">
-      <!-- Left Image Column -->
       <div class="col-md-6 d-flex justify-content-center">
           <img src="{{ hot_product.image_url }}" class="img-fluid rounded" alt="{{ hot_product.name }}" 
                style="width: 500px; height: 500px; object-fit: cover;">
       </div>
   
-      <!-- Right Text Column -->
       <div class="col-md-6 d-flex flex-column justify-content-center">
-          <!-- "What's Hot?" Title -->
           <div class="text-left mb-3" 
                style="font-family: 'Rubik Mono One', sans-serif; 
                       font-size: 3em; 
@@ -144,7 +140,7 @@
   </div>
 </div>
 
-</div> <!-- End of uniform width wrapper -->
+</div>
 
 <!-- Full-Width Social Media Section -->
 <style>
