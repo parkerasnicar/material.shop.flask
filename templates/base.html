@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>materi.al</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
-    <style>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>materi.al</title>
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+        <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+        .rubik-mono {
+            font-family: 'Rubik Mono One', sans-serif;
+        }
         .floating-nav {
             margin-top: 2rem; /* space down from the top of the page */
             display: flex;
@@ -54,16 +62,16 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <div class="floating-nav">
-      <div class="nav-box">
-        <a href="#">shop</a>
-        <a href="#">about</a>
-        <a class="navbar-brand" href="/">materi.al</a>
-        <a href="#">contact</a>
-        <a href="#"><button>cart</button></a>
-      </div>
+   <!-- Navigation Bar -->
+<div class="floating-nav">
+    <div class="nav-box">
+      <a href="#" class="text-decoration-none">shop</a>
+      <a href="#" class="text-decoration-none">about</a>
+      <a class="navbar-brand rubik-mono" href="/" style="font-size: 2em;">material</a>
+      <a href="#" class="text-decoration-none">contact</a>
+      <a href="#"><button>cart</button></a>
     </div>
+  </div>
     
     <!-- Content will be injected here by child templates -->
     <div class="container mt-4">
