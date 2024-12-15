@@ -15,5 +15,13 @@ def index():
     products = Product.query.all()
     return render_template('index.html', products=products)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
