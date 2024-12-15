@@ -46,15 +46,20 @@ def shop():
 
 @app.route('/shop/<category>/<int:item_id>')
 def item_details(category, item_id):
-    # Query the product based on its ID
     product = Product.query.get_or_404(item_id)
-    
-    # Ensure the product's category matches the URL
-    if product.category.lower() != category.lower():
-        return redirect(url_for('shop'))  # Redirect to shop page if mismatch
 
-    # Render the item details page
-    return render_template('item_details.html', product=product)
+    # Example of stock_by_size - Replace this with actual logic for your database
+    stock_by_size = {
+        "S": 5,   # Small in stock
+        "M": 0,   # Medium out of stock
+        "L": 3,   # Large in stock
+        "XL": 2   # XL in stock
+    }
+
+    # Overwrite or inject this data dynamically into the product
+    product.stock_by_size = stock_by_size
+
+    return render_template('item-details.html', product=product)
 
 if __name__ == '__main__':
     with app.app_context():
