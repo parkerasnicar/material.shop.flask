@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container mt-5 mb-5">
 
-    <!-- Shop Page Title -->
+    <!-- Page Title -->
     <h1 class="mb-4 text-center" style="font-family: 'Rubik Mono One', sans-serif; color: #31493C;">Browse Our Collection</h1>
 
     <!-- Search Bar -->
@@ -16,7 +16,7 @@
         </div>
     </form>
 
-    <!-- Filter Tags -->
+    <!-- Filter Buttons -->
     <div class="mb-4 text-center">
         <form method="GET" action="{{ url_for('shop') }}">
             <input type="hidden" name="search" value="{{ search_query }}">
@@ -44,6 +44,7 @@
             </a>
         </div>
         {% else %}
+        <!-- Message for No Products Found -->
         <div class="col-12 text-center">
             <p style="font-family: 'Outfit', sans-serif; font-size: 1.2em; color: #6c757d;">No products found.</p>
         </div>
@@ -79,7 +80,7 @@
 
 </div>
 
-<!-- Copyright Section -->
+<!-- Footer -->
 <div class="container-fluid text-center py-2" 
      style="background-color: #F5F5F5; 
             border: 2px solid #31493C; 
@@ -88,7 +89,7 @@
             bottom: 20px; 
             left: 50%; 
             transform: translateX(-50%);
-            width: 55.5%; /* Matches the navbar width */
+            width: 55.5%; 
             color: #31493C;">
   <p class="mb-1" style="font-family: 'Outfit', sans-serif; font-weight: bold;">© 2024 materi.al | All rights reserved.</p>
   <p class="mb-0" style="font-family: 'Outfit', sans-serif;">Ethically sourced streetwear for the mindful customer.</p>
