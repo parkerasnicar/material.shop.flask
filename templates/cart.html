@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-5 mb-5">
-    <!-- Cart Page Title -->
+    <!-- Page Title -->
     <h1 class="text-center mb-4" style="font-family: 'Rubik Mono One', sans-serif; color: #31493C;">
         Your Shopping Cart
     </h1>
 
-    <!-- Cart Items -->
+    <!-- Cart Items Section -->
     <div class="card mb-4">
         <div class="card-header bg-dark text-white" style="font-family: 'Outfit', sans-serif; font-weight: bold;">
             Cart Items
         </div>
         <div class="card-body">
+            <!-- Cart Items Table -->
             <table class="table">
                 <thead>
                     <tr>
@@ -23,16 +24,17 @@
                     </tr>
                 </thead>
                 <tbody id="cart-items">
-                    <!-- Cart items will be dynamically populated -->
+                    <!-- Dynamically populated cart items -->
                 </tbody>
             </table>
+            <!-- Total Price -->
             <h4 class="text-right mt-4" id="total-price" style="font-weight: bold; color: #31493C;">
                 Total: $0.00
             </h4>
         </div>
     </div>
 
-    <!-- Actions -->
+    <!-- Action Buttons -->
     <div class="d-flex justify-content-between">
         <!-- Clear Basket Button -->
         <button id="clear-cart" class="btn btn-secondary" style="border-radius: 10px;">Clear Basket</button>
@@ -42,14 +44,14 @@
     </div>
 </div>
 
-<!-- JavaScript for Cart Management -->
+<!-- JavaScript for Cart Functionality -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const cartItemsContainer = document.getElementById("cart-items");
     const totalPriceElement = document.getElementById("total-price");
 
-    // Populate cart items
+    // Display items in the cart
     let total = 0;
     cart.forEach(item => {
         const subtotal = item.price * item.quantity;
@@ -66,10 +68,10 @@ document.addEventListener("DOMContentLoaded", function () {
         cartItemsContainer.appendChild(row);
     });
 
-    // Update total price
+    // Update total price display
     totalPriceElement.textContent = `Total: $${total.toFixed(2)}`;
 
-    // Clear cart functionality
+    // Clear the cart
     document.getElementById("clear-cart").addEventListener("click", function () {
         localStorage.removeItem("cart");
         location.reload();
@@ -77,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-<!-- Copyright Section -->
+<!-- Footer -->
 <div class="container-fluid text-center py-2" 
      style="background-color: #F5F5F5; 
             border: 2px solid #31493C; 
@@ -86,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
             bottom: 20px; 
             left: 50%; 
             transform: translateX(-50%);
-            width: 55.5%; /* Matches the navbar width */
+            width: 55.5%; 
             color: #31493C;">
   <p class="mb-1" style="font-family: 'Outfit', sans-serif; font-weight: bold;">© 2024 materi.al | All rights reserved.</p>
   <p class="mb-0" style="font-family: 'Outfit', sans-serif;">Ethically sourced streetwear for the mindful customer.</p>
