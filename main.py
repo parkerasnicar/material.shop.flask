@@ -23,16 +23,25 @@ def contact():
 
 @app.route('/shop')
 def shop():
-    """
-    Shop page that displays all products by default.
-    Filters products by category if a 'category' parameter is provided.
-    """
-    category = request.args.get('category')  # Retrieve category filter from query parameters
+    page = request.args.get('page', 1, type=int)
+    per_page = 8  # Number of items per page
+    query = Product.query  # Base query
+
+    # Handle category filter
+    category = request.args.get('category')
     if category:
-        products = Product.query.filter_by(category=category).all()
-    else:
-        products = Product.query.all()
-    return render_template('shop.html', products=products)
+        query = query.filter_by(category=category)
+
+    # Handle search
+    search_query = request.args.get('search')
+    if search_query:
+        query = query.filter(Product.name.ilike(f"%{search_query}%"))
+
+    # Paginate query
+    pagination = query.paginate(page=page, per_page=per_page)
+    products = pagination.items
+
+    return render_template('shop.html', products=products, pagination=pagination)
 
 @app.route('/item/<int:product_id>')
 def item_details(product_id):
