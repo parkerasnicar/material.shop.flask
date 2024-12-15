@@ -38,9 +38,9 @@
             <p style="font-size: 1.5em; font-weight: bold; color: #31493C;">
                 ${{ product.price }}
             </p>
-           <!-- Size Selection -->
-            <div class="my-4">
-                <div class="d-flex flex-wrap gap-2" id="size-buttons">
+            <!-- Size Selection -->
+            <div class="mt-4 mb-4">
+                <div class="d-flex flex-wrap gap-3" id="size-buttons">
                     {% set sizes = product.available_sizes.split(',') %}
                     {% for size in sizes %}
                         {% if size in product.stock_by_size and product.stock_by_size[size] > 0 %}
@@ -48,20 +48,21 @@
                             <button type="button" 
                                     class="btn btn-outline-dark size-btn" 
                                     data-size="{{ size }}" 
-                                    style="width: 100px; height: 50px; font-size: 1.2rem; font-weight: bold; border-radius: 10px;">
-                              {{ size }}
-                           </button>
-                       {% else %}
-                           <!-- Out of Stock Button -->
-                           <button type="button" 
-                                   class="btn btn-secondary size-btn disabled" 
-                                   style="width: 100px; height: 50px; font-size: 1.2rem; font-weight: bold; border-radius: 10px; cursor: not-allowed;">
-                               {{ size }}
+                                    style="width: 80px; height: 50px; border-radius: 10px; font-size: 1.2em; font-weight: bold; margin-right: 10px;">
+                                {{ size }}
+                            </button>
+                        {% else %}
+                            <!-- Out of Stock Button -->
+                            <button type="button" 
+                                    class="btn btn-secondary size-btn disabled" 
+                                    style="width: 80px; height: 50px; border-radius: 10px; font-size: 1.2em; font-weight: bold; margin-right: 10px; cursor: not-allowed;">
+                                {{ size }}
                             </button>
                         {% endif %}
-                  {% endfor %}
-               </div>
+                    {% endfor %}
+                </div>
             </div>
+
             <p style="font-family: 'Outfit', sans-serif;">
                 Sustainability Rating: {{ product.sustainability_rating }}
             </p>
@@ -72,6 +73,22 @@
         </div>
     </div>
 </div>
+
+<!-- JavaScript for Button Selection -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const sizeButtons = document.querySelectorAll('.size-btn');
+
+    sizeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            if (!button.classList.contains('disabled')) {
+                sizeButtons.forEach(btn => btn.classList.remove('btn-dark', 'text-white'));
+                button.classList.add('btn-dark', 'text-white');
+            }
+        });
+    });
+});
+</script>
 
 <!-- Footer Section -->
 <footer class="text-white py-5" style="background-color: #31493C; border-radius: 20px; margin-top: 40px;">
