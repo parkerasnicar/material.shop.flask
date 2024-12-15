@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5 mb-5">
+    <!-- Breadcrumb Navigation -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ url_for('shop') }}" style="text-decoration: none; color: #31493C;">Shop</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{ url_for('shop', category=product.category|lower) }}" 
+                   style="text-decoration: none; color: #31493C;">
+                   {{ product.category }}
+                </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page" style="color: #6c757d;">
+                {{ product.name }}
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Item Image and Details -->
+    <div class="row align-items-start">
+        <!-- Product Image -->
+        <div class="col-md-6">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}" 
+                 class="img-fluid rounded" style="max-height: 500px; object-fit: cover;">
+        </div>
+
+        <!-- Product Details -->
+        <div class="col-md-6">
+            <h1 style="font-family: 'Rubik Mono One', sans-serif; color: #31493C;">{{ product.name }}</h1>
+            <p style="font-family: 'Outfit', sans-serif; font-size: 1.2em;">
+                {{ product.description }}
+            </p>
+            <p style="font-size: 1.5em; font-weight: bold; color: #31493C;">
+                ${{ product.price }}
+            </p>
+            <p style="font-family: 'Outfit', sans-serif; font-weight: bold;">
+                Available Sizes: {{ product.available_sizes }}
+            </p>
+            <p style="font-family: 'Outfit', sans-serif;">
+                Sustainability Rating: {{ product.sustainability_rating }}
+            </p>
+            <p style="font-family: 'Outfit', sans-serif; font-weight: bold;">
+                Stock: {{ product.stock }}
+            </p>
+            <button class="btn btn-dark px-4 py-2 mt-3" style="border-radius: 10px;">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Copyright Section -->
+<div class="container-fluid text-center py-2 mt-5" 
+     style="background-color: #F5F5F5; border: 2px solid #31493C; border-radius: 20px; color: #31493C;">
+    <p class="mb-1" style="font-family: 'Outfit', sans-serif; font-weight: bold;">© 2024 materi.al | All rights reserved.</p>
+    <p class="mb-0" style="font-family: 'Outfit', sans-serif;">Ethically sourced streetwear for the mindful customer.</p>
+</div>
+{% endblock %}

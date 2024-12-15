@@ -43,12 +43,16 @@ def shop():
 
     return render_template('shop.html', products=products, pagination=pagination)
 
-@app.route('/item/<int:product_id>')
-def item_details(product_id):
-    """
-    Product details page for a specific product.
-    """
-    product = Product.query.get_or_404(product_id)  # Fetch product or return 404 if not found
+@app.route('/shop/<category>/<int:item_id>')
+def item_details(category, item_id):
+    # Query the product based on its ID
+    product = Product.query.get_or_404(item_id)
+    
+    # Ensure the product's category matches the URL
+    if product.category.lower() != category.lower():
+        return redirect(url_for('shop'))  # Redirect to shop page if mismatch
+
+    # Render the item details page
     return render_template('item_details.html', product=product)
 
 if __name__ == '__main__':
