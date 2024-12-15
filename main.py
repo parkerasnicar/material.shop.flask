@@ -1,14 +1,12 @@
-from flask import Flask, render_template, request
+from flask import Flask, request, render_template
 from db import db
+from models import Product, ProductImage, Order, OrderDetail
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///material_shop.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
-
-# Import models after db is set up
-from models import Product, ProductImage, Order, OrderDetail
 
 @app.route('/')
 def index():
@@ -45,4 +43,12 @@ def item_details(product_id):
     return render_template('item_details.html', product=product)
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+        print("Database initialized!")
     app.run(debug=True)
+
+# Recreate the database
+with app.app_context():
+    db.create_all()
+    print("Database has been created successfully!")
