@@ -31,6 +31,25 @@
             font-size: 2em; /* Larger, more prominent brand */
             margin: 0 2rem; /* Spacing around the brand name */
         }
+        button {
+            background: #6D9A5B;
+            font-family: inherit;
+             padding: 0.6em 1.3em;
+            font-weight: 900;
+            font-size: 12px;
+            border: 3px solid black;
+            border-radius: 0.4em;
+            box-shadow: 0.1em 0.1em;
+            cursor: pointer;
+        }
+        button:hover {
+            transform: translate(-0.05em, -0.05em);
+            box-shadow: 0.15em 0.15em;
+        }
+        button:active {
+            transform: translate(0.05em, 0.05em);
+            box-shadow: 0.05em 0.05em;
+            }
     </style>
 </head>
 <body>
@@ -42,7 +61,7 @@
         <a href="#">about</a>
         <a class="navbar-brand" href="/">materi.al</a>
         <a href="#">contact</a>
-        <a href="#">bag(0)</a>
+        <a href="#"><button>cart</button></a>
       </div>
     </div>
     
