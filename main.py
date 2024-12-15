@@ -10,8 +10,12 @@ db.init_app(app)
 
 @app.route('/')
 def index():
+    # Fetch all products
     products = Product.query.all()
-    return render_template('index.html', products=products)
+    # Fetch the hot product (Organic Cotton Hoodie)
+    hot_product = Product.query.filter_by(name="Organic Cotton Hoodie").first()
+
+    return render_template('index.html', products=products, hot_product=hot_product)
 
 @app.route('/about')
 def about():
@@ -53,7 +57,8 @@ def item_details(category, item_id):
         "S": 5,   # Small in stock
         "M": 0,   # Medium out of stock
         "L": 3,   # Large in stock
-        "XL": 2   # XL in stock
+        "XL": 2,   # XL in stock
+        "One Size": 2
     }
 
     # Overwrite or inject this data dynamically into the product

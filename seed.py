@@ -12,7 +12,7 @@ sample_products = [
         "brand": "EcoThreads",
         "sustainability_rating": "A+",
         "available_sizes": "S,M,L,XL",
-        "image_url": "https://via.placeholder.com/200"
+        "image_url": "https://via.placeholder.com/500"
     },
     {
         "name": "Vintage Denim Jacket",
@@ -23,7 +23,7 @@ sample_products = [
         "brand": "DenimWorks",
         "sustainability_rating": "B",
         "available_sizes": "M,L,XL",
-        "image_url": "https://via.placeholder.com/200"
+        "image_url": "https://via.placeholder.com/500"
     },
     {
         "name": "Eco-Friendly T-Shirt",
@@ -34,7 +34,7 @@ sample_products = [
         "brand": "GreenWear",
         "sustainability_rating": "A",
         "available_sizes": "S,M,L",
-        "image_url": "https://via.placeholder.com/200"
+        "image_url": "https://via.placeholder.com/500"
     },
     {
         "name": "Recycled Polyester Pants",
@@ -45,7 +45,7 @@ sample_products = [
         "brand": "ReFashion",
         "sustainability_rating": "A",
         "available_sizes": "M,L,XL",
-        "image_url": "https://via.placeholder.com/200"
+        "image_url": "https://via.placeholder.com/500"
     },
     {
         "name": "Sustainable Canvas Sneakers",
@@ -56,7 +56,7 @@ sample_products = [
         "brand": "SoleMate",
         "sustainability_rating": "A+",
         "available_sizes": "7,8,9,10,11,12",
-        "image_url": "https://via.placeholder.com/200"
+        "image_url": "https://via.placeholder.com/500"
     },
     {
         "name": "Organic Linen Shirt",
@@ -67,7 +67,7 @@ sample_products = [
         "brand": "NatureWear",
         "sustainability_rating": "A",
         "available_sizes": "S,M,L,XL",
-        "image_url": "https://via.placeholder.com/200"
+        "image_url": "https://via.placeholder.com/500"
     },
     {
         "name": "Recycled Nylon Backpack",
@@ -78,7 +78,7 @@ sample_products = [
         "brand": "EcoPack",
         "sustainability_rating": "A+",
         "available_sizes": "One Size",
-        "image_url": "https://via.placeholder.com/200"
+        "image_url": "https://via.placeholder.com/500"
     },
     {
         "name": "Upcycled Denim Shorts",
@@ -89,7 +89,7 @@ sample_products = [
         "brand": "DenimWorks",
         "sustainability_rating": "B+",
         "available_sizes": "S,M,L",
-        "image_url": "https://via.placeholder.com/200"
+        "image_url": "https://via.placeholder.com/500"
     },
     {
         "name": "Handcrafted Wool Beanie",
@@ -100,7 +100,7 @@ sample_products = [
         "brand": "WarmHues",
         "sustainability_rating": "A",
         "available_sizes": "One Size",
-        "image_url": "https://via.placeholder.com/200"
+        "image_url": "https://via.placeholder.com/500"
     },
     {
         "name": "Vegan Leather Jacket",
@@ -122,7 +122,7 @@ sample_products = [
         "brand": "GreenStep",
         "sustainability_rating": "A",
         "available_sizes": "One Size",
-        "image_url": "https://via.placeholder.com/200"
+        "image_url": "https://via.placeholder.com/500"
     },
     {
         "name": "Eco-Dyed Hoodie",
@@ -133,7 +133,7 @@ sample_products = [
         "brand": "EcoThreads",
         "sustainability_rating": "A",
         "available_sizes": "S,M,L,XL",
-        "image_url": "https://via.placeholder.com/200"
+        "image_url": "https://via.placeholder.com/500"
     },
     {
         "name": "Vintage Cargo Pants",
@@ -144,7 +144,7 @@ sample_products = [
         "brand": "RetroStyle",
         "sustainability_rating": "B+",
         "available_sizes": "M,L,XL",
-        "image_url": "https://via.placeholder.com/200"
+        "image_url": "https://via.placeholder.com/500"
     },
     {
         "name": "Organic Cotton Tote Bag",
@@ -155,7 +155,7 @@ sample_products = [
         "brand": "CarryKind",
         "sustainability_rating": "A+",
         "available_sizes": "One Size",
-        "image_url": "https://via.placeholder.com/200"
+        "image_url": "https://via.placeholder.com/500"
     },
     {
         "name": "Recycled Wool Scarf",
@@ -166,7 +166,7 @@ sample_products = [
         "brand": "WarmHues",
         "sustainability_rating": "A",
         "available_sizes": "One Size",
-        "image_url": "https://via.placeholder.com/200"
+        "image_url": "https://via.placeholder.com/500"
     },
     {
         "name": "Sustainable Cotton Joggers",
@@ -177,7 +177,7 @@ sample_products = [
         "brand": "EcoComfort",
         "sustainability_rating": "A+",
         "available_sizes": "S,M,L,XL",
-        "image_url": "https://via.placeholder.com/200"
+        "image_url": "https://via.placeholder.com/500"
     }
 ]
 

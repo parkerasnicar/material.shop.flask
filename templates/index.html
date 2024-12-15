@@ -32,46 +32,46 @@
 
   <!-- Categories Section -->
 <div class="mb-5 p-4">
-    <h3 class="text-center mb-4">Explore Our Categories</h3>
-    <div class="row text-center">
+  <h3 class="text-center mb-4">Explore Our Categories</h3>
+  <div class="row text-center">
       <!-- Hoodie Category -->
       <div class="col-md-3 mb-3">
-        <a href="/search?category=hoodies" class="text-decoration-none">
-          <div class="position-relative">
-            <img src="https://via.placeholder.com/200x200" class="img-fluid rounded-circle" alt="Hoodies">
-            <span class="position-absolute top-50 start-50 translate-middle text-white fw-bold">Hoodies</span>
-          </div>
-        </a>
+          <a href="{{ url_for('shop', category='Hoodies') }}" class="text-decoration-none">
+              <div class="position-relative">
+                  <img src="https://via.placeholder.com/200x200" class="img-fluid rounded-circle" alt="Hoodies">
+                  <span class="position-absolute top-50 start-50 translate-middle text-white fw-bold">Hoodies</span>
+              </div>
+          </a>
       </div>
       <!-- Shirt Category -->
       <div class="col-md-3 mb-3">
-        <a href="/search?category=shirts" class="text-decoration-none">
-          <div class="position-relative">
-            <img src="https://via.placeholder.com/200x200" class="img-fluid rounded-circle" alt="Shirts">
-            <span class="position-absolute top-50 start-50 translate-middle text-white fw-bold">Shirts</span>
-          </div>
-        </a>
+          <a href="{{ url_for('shop', category='Shirts') }}" class="text-decoration-none">
+              <div class="position-relative">
+                  <img src="https://via.placeholder.com/200x200" class="img-fluid rounded-circle" alt="Shirts">
+                  <span class="position-absolute top-50 start-50 translate-middle text-white fw-bold">Shirts</span>
+              </div>
+          </a>
       </div>
       <!-- Pants Category -->
       <div class="col-md-3 mb-3">
-        <a href="/search?category=pants" class="text-decoration-none">
-          <div class="position-relative">
-            <img src="https://via.placeholder.com/200x200" class="img-fluid rounded-circle" alt="Pants">
-            <span class="position-absolute top-50 start-50 translate-middle text-white fw-bold">Pants</span>
-          </div>
-        </a>
+          <a href="{{ url_for('shop', category='Pants') }}" class="text-decoration-none">
+              <div class="position-relative">
+                  <img src="https://via.placeholder.com/200x200" class="img-fluid rounded-circle" alt="Pants">
+                  <span class="position-absolute top-50 start-50 translate-middle text-white fw-bold">Pants</span>
+              </div>
+          </a>
       </div>
       <!-- Accessories Category -->
       <div class="col-md-3 mb-3">
-        <a href="/search?category=accessories" class="text-decoration-none">
-          <div class="position-relative">
-            <img src="https://via.placeholder.com/200x200" class="img-fluid rounded-circle" alt="Accessories">
-            <span class="position-absolute top-50 start-50 translate-middle text-white fw-bold">Accessories</span>
-          </div>
-        </a>
+          <a href="{{ url_for('shop', category='Accessories') }}" class="text-decoration-none">
+              <div class="position-relative">
+                  <img src="https://via.placeholder.com/200x200" class="img-fluid rounded-circle" alt="Accessories">
+                  <span class="position-absolute top-50 start-50 translate-middle text-white fw-bold">Accessories</span>
+              </div>
+          </a>
       </div>
-    </div>
   </div>
+</div>
 
   <!-- Quote Section with border -->
   <div class="text-center mb-5 p-4" 
@@ -111,35 +111,38 @@
     }
   </style>
 
-<!-- Hot Product Highlight Section with Updated Border and Title -->
+<!-- Hot Product Highlight Section -->
 <div class="mb-5" style="border: 2px solid #31493C; border-radius: 20px; padding: 20px; background: #F5F5F5;">
-    <div class="row align-items-center">
+  <div class="row align-items-center">
       <!-- Left Image Column -->
-      <div class="col-md-6">
-        <img src="https://via.placeholder.com/600x600" class="img-fluid rounded" alt="Hot Product Image">
+      <div class="col-md-6 d-flex justify-content-center">
+          <img src="{{ hot_product.image_url }}" class="img-fluid rounded" alt="{{ hot_product.name }}" 
+               style="width: 500px; height: 500px; object-fit: cover;">
       </div>
   
       <!-- Right Text Column -->
       <div class="col-md-6 d-flex flex-column justify-content-center">
-        <!-- "What's Hot?" Title -->
-        <div class="text-left mb-3" 
-             style="font-family: 'Rubik Mono One', sans-serif; 
-                    font-size: 3em; 
-                    font-weight: bold; 
-                    width: 100%; 
-                    text-transform: uppercase; 
-                    letter-spacing: 2px;">
-          What's Hot?
-        </div>
+          <!-- "What's Hot?" Title -->
+          <div class="text-left mb-3" 
+               style="font-family: 'Rubik Mono One', sans-serif; 
+                      font-size: 3em; 
+                      font-weight: bold; 
+                      width: 100%; 
+                      text-transform: uppercase; 
+                      letter-spacing: 2px;">
+              What's Hot?
+          </div>
   
-        <!-- Product Details -->
-        <h3 class="mb-3">Organic Cotton Hoodie</h3>
-        <p>Our best-selling hoodie is made from 100% organic cotton, featuring a comfortable fit, minimalist design, and premium stitching. Feel good knowing every thread supports sustainable farming and fair labor practices.</p>
-        <p><strong>$69.99</strong></p>
-        <a href="#"><button>Shop Now</button></a>
+          <!-- Product Details -->
+          <h3 class="mb-3">{{ hot_product.name }}</h3>
+          <p>{{ hot_product.description }}</p>
+          <p><strong>${{ hot_product.price }}</strong></p>
+          <a href="{{ url_for('item_details', category=hot_product.category|lower, item_id=hot_product.id) }}">
+              <button>Shop Now</button>
+          </a>
       </div>
-    </div>
   </div>
+</div>
 
 </div> <!-- End of uniform width wrapper -->
 
