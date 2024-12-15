@@ -1,29 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-5 mb-5" style="max-width: 800px;">
+  <!-- Page Title -->
   <div class="text-center mb-4">
     <h1 style="font-family: 'Rubik Mono One', sans-serif; font-size: 2.5em;">Contact Us</h1>
   </div>
+
+  <!-- Contact Form Section -->
   <div style="border: 2px solid #31493C; border-radius: 20px; padding: 20px; background: #31493C;">
     <form>
+      <!-- Name Input -->
       <div class="form-group mb-3">
         <label for="name" class="text-white" style="font-weight: bold;">Your Name</label>
         <input type="text" class="form-control" id="name" placeholder="Enter your name" style="background: #F5F5F5; border: none; border-radius: 5px;" required>
       </div>
+
+      <!-- Email Input -->
       <div class="form-group mb-3">
         <label for="email" class="text-white" style="font-weight: bold;">Your Email</label>
         <input type="email" class="form-control" id="email" placeholder="Enter your email" style="background: #F5F5F5; border: none; border-radius: 5px;" required>
       </div>
+
+      <!-- Message Input -->
       <div class="form-group mb-3">
         <label for="message" class="text-white" style="font-weight: bold;">Your Message</label>
         <textarea class="form-control" id="message" rows="5" placeholder="Enter your message" style="background: #F5F5F5; border: none; border-radius: 5px;" required></textarea>
       </div>
+
+      <!-- Submit Button -->
       <button type="submit" class="btn btn-warning" style="font-weight: bold; padding: 10px 20px; background-color: #FCCA46; border: none;">Send</button>
     </form>
   </div>
 </div>
 
-<!-- Copyright Section -->
+<!-- Footer Section -->
 <div class="container-fluid text-center py-2" 
      style="background-color: #F5F5F5; 
             border: 2px solid #31493C; 
@@ -32,7 +42,7 @@
             bottom: 20px; 
             left: 50%; 
             transform: translateX(-50%);
-            width: 55.5%; /* Matches the navbar width */
+            width: 55.5%; 
             color: #31493C;">
   <p class="mb-1" style="font-family: 'Outfit', sans-serif; font-weight: bold;">© 2024 materi.al | All rights reserved.</p>
   <p class="mb-0" style="font-family: 'Outfit', sans-serif;">Ethically sourced streetwear for the mindful customer.</p>
