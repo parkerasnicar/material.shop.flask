@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>materi.al</title>
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
-        <style>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>materi.al</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <style>
         body {
             font-family: 'Outfit', sans-serif;
         }
@@ -16,33 +16,38 @@
             font-family: 'Rubik Mono One', sans-serif;
         }
         .floating-nav {
-            margin-top: 2rem; /* space down from the top of the page */
-            display: flex;
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* 5 evenly spaced columns */
             justify-content: center;
-        }
-        .nav-box {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            border: 2px solid #31493C; /* Adjust this green as needed */
+            width: 55.5%;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid #31493C;
             border-radius: 20px;
-            background: #F5F5F5; /* A soft off-white background */
-            padding: 1rem 2rem;
-            width: 55.5%; /* Adjust width as desired */
+            background: #F5F5F5;
+            padding: 1rem 0.5rem;
         }
-        .nav-box a {
+        .floating-nav a {
             text-decoration: none;
-            color: #31493C; /* Green text color */
+            color: #31493C;
             font-weight: bold;
+            text-align: center;
         }
-        .nav-box .navbar-brand {
-            font-size: 2em; /* Larger, more prominent brand */
-            margin: 0 2rem; /* Spacing around the brand name */
+        .floating-nav .navbar-brand {
+            text-align: center;
+            font-size: 2em;
+        }
+        .cart-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
         }
         button {
             background: #FCCA46;
             font-family: inherit;
-             padding: 0.6em 1.3em;
+            padding: 0.6em 1.3em;
             font-weight: 900;
             font-size: 12px;
             border: 3px solid black;
@@ -57,21 +62,39 @@
         button:active {
             transform: translate(0.05em, 0.05em);
             box-shadow: 0.05em 0.05em;
-            }
+        }
+        .cart-size {
+            background: #FCCA46;
+            padding: 0.6em 1.3em;
+            font-weight: 900;
+            font-size: 12px;
+            border: 3px solid black;
+            border-radius: 0.4em;
+            box-shadow: 0.1em 0.1em;
+            margin-right: 0.5rem; /* Adjust spacing between cart size and cart button */
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-
-   <!-- Navigation Bar -->
-   <div class="floating-nav">
-    <div class="nav-box">
-      <a href="/shop" class="text-decoration-none">Shop</a>
-      <a href="/about" class="text-decoration-none">About</a>
-      <a class="navbar-brand" href="/">materi.al</a>
-      <a href="/contact" class="text-decoration-none">Contact</a>
-      <a href="/cart"><button>Cart</button></a>
+    <!-- Navigation Bar -->
+<div class="floating-nav">
+    <!-- Left Section: Shop -->
+    <a href="/shop">Shop</a>
+    <!-- Left Center: About -->
+    <a href="/about">About</a>
+    <!-- Center: Title -->
+    <a class="navbar-brand" href="/">materi.al</a>
+    <!-- Right Center: Contact -->
+    <a href="/contact">Contact</a>
+    <!-- Right Section: Cart Size and Cart -->
+    <div class="cart-container" style="margin-right: 1rem;"> <!-- Inline Margin to shift left -->
+        <div id="cart-size" class="btn cart-size" style="margin-right: 1.3rem;">0</div>
+        <a href="/cart" style="margin-right: 0.5rem;">
+            <button style="margin-left: -10px;">Cart</button>
+        </a>
     </div>
-  </div>
+</div>
     
     <!-- Content will be injected here by child templates -->
     <div class="container mt-4">
@@ -81,5 +104,18 @@
     <!-- Bootstrap JS and its dependencies -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Dynamic Cart Size Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            function updateCartSize() {
+                const cartSizeButton = document.getElementById('cart-size');
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartSizeButton.textContent = totalItems;
+            }
+            updateCartSize();
+        });
+    </script>
 </body>
 </html>

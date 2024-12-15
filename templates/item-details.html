@@ -38,6 +38,7 @@
             <p style="font-size: 1.5em; font-weight: bold; color: #31493C;">
                 ${{ product.price }}
             </p>
+
             <!-- Size Selection -->
             <div class="mt-4 mb-4">
                 <div class="d-flex flex-wrap gap-3" id="size-buttons">
@@ -69,24 +70,73 @@
             <p style="font-family: 'Outfit', sans-serif; font-weight: bold;">
                 Stock: {{ product.stock }}
             </p>
-            <button class="btn btn-dark px-4 py-2 mt-3" style="border-radius: 10px;">Add to Cart</button>
+            <button id="add-to-cart" class="btn btn-dark px-4 py-2 mt-3" style="border-radius: 10px;">Add to Cart</button>
         </div>
     </div>
 </div>
 
-<!-- JavaScript for Button Selection -->
+<!-- JavaScript for Button Selection and Add to Cart -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const sizeButtons = document.querySelectorAll('.size-btn');
+    const addToCartButton = document.getElementById("add-to-cart");
+    let selectedSize = null;
 
+    // Highlight selected size
     sizeButtons.forEach(button => {
         button.addEventListener('click', () => {
             if (!button.classList.contains('disabled')) {
                 sizeButtons.forEach(btn => btn.classList.remove('btn-dark', 'text-white'));
                 button.classList.add('btn-dark', 'text-white');
+                selectedSize = button.getAttribute('data-size');
             }
         });
     });
+
+    // Add to Cart Functionality
+    addToCartButton.addEventListener('click', () => {
+        if (!selectedSize) {
+            alert("Please select a size before adding to cart.");
+            return;
+        }
+
+        const product = {
+            id: "{{ product.id }}",
+            name: "{{ product.name }}",
+            size: selectedSize,
+            price: parseFloat("{{ product.price }}"),
+            quantity: 1
+        };
+
+        // Retrieve or initialize the cart
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Check if the item already exists in the cart
+        const existingItem = cart.find(item => item.id === product.id && item.size === product.size);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push(product);
+        }
+
+        // Save the updated cart to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Update the cart size
+        updateCartSize();
+
+        alert("Item added to cart!");
+    });
+
+    // Update cart size in the navbar
+    function updateCartSize() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById('cart-size').textContent = totalItems;
+    }
+
+    // Initialize cart size on load
+    updateCartSize();
 });
 </script>
 
@@ -136,5 +186,4 @@ document.addEventListener("DOMContentLoaded", () => {
     <p class="mb-1 text-white">© 2024 materi.al | All rights reserved.</p>
     <p class="mb-0 text-white">Ethically sourced streetwear for the mindful customer.</p>
 </div>
-
 {% endblock %}

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5 mb-5">
+    <!-- Cart Title -->
+    <h1 class="text-center mb-4" style="font-family: 'Rubik Mono One', sans-serif; color: #31493C;">
+        Your Cart
+    </h1>
+
+    <!-- Cart Table -->
+    <div id="cart-content">
+        <table class="table table-hover table-bordered text-center" style="font-family: 'Outfit', sans-serif;">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Cart items will be dynamically populated here -->
+            </tbody>
+        </table>
+
+        <!-- Empty Cart Message -->
+        <div id="empty-cart-message" class="text-center mt-4" style="display: none;">
+            <h5>Your cart is currently empty.</h5>
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="text-right mt-4" id="cart-summary" style="display: none;">
+            <h4>Total: <span id="cart-total" style="color: #31493C; font-weight: bold;">$0.00</span></h4>
+            <button class="btn btn-dark px-4 py-2 mt-3" style="border-radius: 10px;">Proceed to Checkout</button>
+            <button id="clear-cart" class="btn btn-danger mt-3">Clear Basket</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("clear-cart").addEventListener("click", () => {
+        localStorage.removeItem('cart');
+        alert("Cart cleared!");
+        window.location.reload(); // Reload to reflect empty cart
+    });
+    </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartItemsContainer = document.getElementById("cart-items");
+        const cartSummary = document.getElementById("cart-summary");
+        const cartTotalElement = document.getElementById("cart-total");
+        const emptyCartMessage = document.getElementById("empty-cart-message");
+
+        function renderCart() {
+            cartItemsContainer.innerHTML = ""; // Clear cart table
+            let totalCost = 0;
+
+            if (cart.length === 0) {
+                emptyCartMessage.style.display = "block";
+                cartSummary.style.display = "none";
+            } else {
+                emptyCartMessage.style.display = "none";
+                cartSummary.style.display = "block";
+
+                cart.forEach(item => {
+                    const totalItemCost = item.price * item.quantity;
+                    totalCost += totalItemCost;
+
+                    cartItemsContainer.innerHTML += `
+                        <tr>
+                            <td>${item.name}</td>
+                            <td>${item.size || 'N/A'}</td>
+                            <td>$${item.price.toFixed(2)}</td>
+                            <td>${item.quantity}</td>
+                            <td>$${totalItemCost.toFixed(2)}</td>
+                        </tr>
+                    `;
+                });
+
+                cartTotalElement.textContent = `$${totalCost.toFixed(2)}`;
+            }
+        }
+
+        renderCart();
+    });
+</script>
+
+<!-- Copyright Section -->
+<div class="container-fluid text-center py-2" 
+     style="background-color: #F5F5F5; 
+            border: 2px solid #31493C; 
+            border-radius: 20px; 
+            position: absolute; 
+            bottom: 20px; 
+            left: 50%; 
+            transform: translateX(-50%);
+            width: 55.5%; /* Matches the navbar width */
+            color: #31493C;">
+  <p class="mb-1" style="font-family: 'Outfit', sans-serif; font-weight: bold;">© 2024 materi.al | All rights reserved.</p>
+  <p class="mb-0" style="font-family: 'Outfit', sans-serif;">Ethically sourced streetwear for the mindful customer.</p>
+</div>
+
+{% endblock %}

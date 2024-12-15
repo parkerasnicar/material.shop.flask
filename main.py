@@ -61,6 +61,10 @@ def item_details(category, item_id):
 
     return render_template('item-details.html', product=product)
 
+@app.route('/cart')
+def cart():
+    return render_template('cart.html')
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
